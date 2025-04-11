@@ -14,3 +14,10 @@ spec:
       Name: DemoVpc
   providerConfigRef:
     name: default
+
+#Create vpc.yaml
+#kubectl create -f vpc.yaml
+#kubectl get vpc
+#kubectl describe vpc <name of vpc>
+#kubectl get pods -n crossplane-system
+#kubectl describe pod <pod name ec2> -n crossplane-system
