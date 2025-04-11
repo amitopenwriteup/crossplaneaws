@@ -1,0 +1,19 @@
+apiVersion: ec2.aws.upbound.io/v1beta2
+kind: VPCEndpoint
+metadata:
+  annotations:
+    meta.upbound.io/example-id: ec2/v1beta2/vpcendpoint
+  labels:
+    testing.upbound.io/example-name: ec2
+  name: ec2
+spec:
+  forProvider:
+    region: us-east-2
+    serviceName: com.amazonaws.us-east-2.ec2
+    vpcEndpointType: Interface
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+  providerConfigRef:
+    name: default
+

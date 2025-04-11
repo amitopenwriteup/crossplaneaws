@@ -1,0 +1,14 @@
+apiVersion: ec2.aws.upbound.io/v1beta2
+kind: Route
+metadata:
+  annotations:
+    meta.upbound.io/example-id: ec2/v1beta2/route
+  name: route
+spec:
+  forProvider:
+    destinationCidrBlock: 0.0.0.0/0
+    gatewayIdRef:
+      name: routegw
+    region: us-east-2
+    routeTableIdRef:
+      name: table

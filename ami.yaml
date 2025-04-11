@@ -1,0 +1,26 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: AMI
+metadata:
+  name: ubuntu-ami
+  labels:
+    testing.upbound.io/example-name: ubuntu-ami
+spec:
+  forProvider:
+    mostRecent: true
+    owners:
+      - "099720109477" # Canonical (official Ubuntu AMIs)
+    filters:
+      - name: "name"
+        values:
+          - "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"
+      - name: "architecture"
+        values:
+          - "x86_64"
+      - name: "root-device-type"
+        values:
+          - "ebs"
+      - name: "virtualization-type"
+        values:
+          - "hvm"
+    region: us-east-2
+

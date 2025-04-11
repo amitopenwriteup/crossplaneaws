@@ -1,0 +1,15 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTableAssociation
+metadata:
+  labels:
+    testing.upbound.io/example-name: rta
+  name: rta
+spec:
+  forProvider:
+    region: us-east-2
+    routeTableIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: table
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: subnetattach

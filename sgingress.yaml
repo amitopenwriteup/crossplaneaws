@@ -1,0 +1,19 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: SecurityGroupIngressRule
+metadata:
+  name: allow-ssh
+  annotations:
+    meta.upbound.io/example-id: ec2/v1beta1/securitygroupingressrule
+  labels:
+    testing.upbound.io/example-name: example
+spec:
+  forProvider:
+    cidrIpv4: 0.0.0.0/0
+    fromPort: 22
+    toPort: 22
+    ipProtocol: tcp
+    region: us-east-2
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+

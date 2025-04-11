@@ -1,0 +1,15 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: InternetGateway
+metadata:
+  name: routegw
+  labels:
+    testing.upbound.io/example-name: igw
+spec:
+  forProvider:
+    region: us-east-2
+    tags:
+      Name: main
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+

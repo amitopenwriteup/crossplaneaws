@@ -1,0 +1,8 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: KeyPair
+metadata:
+  name: example
+spec:
+  forProvider:
+    publicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDDAUoUV7BJtCTHROuT4b+fQo+SnHnv4KFpRZ3z2boBUN2nntmhCf3oVdhliyifoGEQmSWnu8I0frJvPGRqSZ54zE27ycER/hTSaCZwmTLK+qTGxwupTF7nePAAG590EKxUbnLX2Ejg1yurcI4RdHLE7bhhgE7AQydYuX6Mrj2so6jPswRj4pQpB6y3bwQ4RTWGr6chFTSRTnJKJMuWCqfns2ubvMVfF6dOyEjZ3l7g4/+8rRVsJ8sjlOBioWTT+PA0cuBnB5f1acMEzDSvaqgVkftUMyynjYHTvIlhoPU/DD5rAmAQj+dcmOOeLflfyP9yWnbxjikNvYs4vGNaT1n2yQyMt5ZNYX5XrrjAsLc1le79YX3eowp2TnLQKEFEwd272wDnB0D/hVKU+GMq0B2NxN4Cj7uEdOlkA1aIDERcXEqUHuutEmfnU1gAMwghuocSu8DInY9Rmc6+S/BNGhZwEeLN2AYiDF9DnVyi+TmBoqBaIOroQPgrff7nxBE6kz0= root@ubuntu
+    region: us-east-2

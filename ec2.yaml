@@ -1,0 +1,16 @@
+apiVersion: ec2.aws.upbound.io/v1beta2
+kind: Instance
+metadata:
+  name: ubuntu-instance
+spec:
+  forProvider:
+    region: us-east-2
+    ami: ami-0100e595e1cc1ff7f
+    instanceType: t2.micro
+    keyName: example
+    subnetId: subnet-0a5fd2e2438cd0719
+    vpcSecurityGroupIdSelector:
+       matchLabels:
+        testing.upbound.io/example-name: example
+    associatePublicIpAddress: true
+
