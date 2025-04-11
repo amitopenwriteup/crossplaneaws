@@ -20,3 +20,12 @@ subjects:
   name: provider-aws-ec2-c339a6b52234
   namespace: crossplane-system
 
+#kubectl get sa -n crossplane-system
+#  name: provider-aws-ec2- provide that name
+#create role.yaml and provide your ec2 sa
+# kubectl apply  -f role.yaml
+# delete the vpc and try to create it again
+# kubectl delete -f vpc.yaml
+# kubectl create -f vpc.yaml
+#then check vpc
+
