@@ -12,3 +12,6 @@ spec:
     region: us-east-2
     routeTableIdRef:
       name: table
+#routegw.yaml
+#kubectl create -f routegw.yaml
+#kubectl get routes
