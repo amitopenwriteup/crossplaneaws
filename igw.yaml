@@ -13,3 +13,7 @@ spec:
       matchLabels:
         testing.upbound.io/example-name: example
 
+#create igw.yaml
+#kubectl apply -f igw.yaml
+#kubectl get internetgateway
+#kubectl describe internetgateway
