@@ -15,3 +15,8 @@ spec:
       matchLabels:
         testing.upbound.io/example-name: example
 
+# Create route.yaml
+# kubectl create -f route.yaml
+#kubectl get routetable
+#kubectl describe routetable table
+
