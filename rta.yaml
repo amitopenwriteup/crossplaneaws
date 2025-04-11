@@ -13,3 +13,7 @@ spec:
     subnetIdSelector:
       matchLabels:
         testing.upbound.io/example-name: subnetattach
+
+#Create rta.yaml
+#kubectl create -f rta.yaml
+#kubect get routetableassociation
