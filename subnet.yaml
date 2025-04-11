@@ -12,3 +12,9 @@ spec:
     vpcIdSelector:
       matchLabels:
          testing.upbound.io/example-name: example
+
+#create subnet.yaml
+#kubectl create -f subnet.yaml
+#kubectl get subnet
+#kubectl describe subnet
+#Cross verfiy on vpc console
