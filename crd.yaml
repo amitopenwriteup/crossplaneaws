@@ -1,0 +1,51 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: xvpcs.network.example.com
+spec:
+  group: network.example.com
+  names:
+    kind: XVPC
+    plural: xvpcs
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            properties:
+              cidrBlock:
+                type: string
+                pattern: "^([0-9]{1,3}\\.){3}[0-9]{1,3}/[0-9]{1,2}$"
+              region:
+                type: string
+                oneOf:
+                  - pattern: '^us-central-1$'
+                  - pattern: '^us-east-2$'
+                  - pattern: '^europe-west-2$'
+              subnets:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    cidr:
+                      type: string
+                      pattern: "^([0-9]{1,3}\\.){3}[0-9]{1,3}/[0-9]{1,2}$"
+                    availabilityZone:
+                      type: string
+                  required:
+                    - name
+                    - cidr
+            required:
+              - cidrBlock
+              - region
+    served: true
+    referenceable: true
+  claimNames:
+    kind: XVPCClaim
+    plural: xvpcclaims
+
