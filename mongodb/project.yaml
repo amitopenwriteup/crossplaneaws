@@ -1,0 +1,9 @@
+apiVersion: mongodbatlas.crossplane.io/v1alpha1
+kind: Project
+metadata:
+  name: example-project
+spec:
+  forProvider:
+    orgId: 67fab3dda79512145f32ad58
+  providerConfigRef:
+    name: mongodb-atlas

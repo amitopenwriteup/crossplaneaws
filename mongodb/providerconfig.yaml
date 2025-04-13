@@ -1,0 +1,12 @@
+apiVersion: mongodbatlas.crossplane.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: mongodb-atlas
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      name: example-creds
+      namespace: crossplane-system
+    # You can include multiple keys like so:
+      key: credentials
