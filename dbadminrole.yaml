@@ -1,0 +1,31 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: crossplane-provider-aws-admin
+rules:
+- apiGroups: ["aws.upbound.io"]
+  resources: ["providerconfigs", "providerconfigusages"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: provider-aws-ec2-permissions
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: crossplane-provider-aws-admin  # Adjust if using a different role
+subjects:
+- kind: ServiceAccount
+  name: provider-aws-dynamodb-9485cd7ab173
+  namespace: crossplane-system
+
+#kubectl get sa -n crossplane-system
+#  name: provider-aws-ec2- provide that name
+#create role.yaml and provide your ec2 sa
+# kubectl apply  -f role.yaml
+# delete the vpc and try to create it again
+# kubectl delete -f vpc.yaml
+# kubectl create -f vpc.yaml
+#then check vpc
+

@@ -4,11 +4,11 @@ metadata:
   name: ubuntu-instance
 spec:
   forProvider:
-    region: us-east-2
-    ami: ami-0100e595e1cc1ff7f
+    region: us-west-2
+    ami: ami-075686beab831bb7f
     instanceType: t2.micro
     keyName: example
-    subnetId: subnet-0a5fd2e2438cd0719
+    subnetId: subnet-0ce51da8e5de3c7c3
     vpcSecurityGroupIdSelector:
        matchLabels:
         testing.upbound.io/example-name: example

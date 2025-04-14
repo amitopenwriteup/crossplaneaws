@@ -9,6 +9,8 @@ spec:
     plural: nosqls
   versions:
   - name: v1alpha1
+    served: true
+    referenceable: true
     schema:
       openAPIV3Schema:
         type: object
@@ -23,8 +25,7 @@ spec:
                   - pattern: '^US$'
             required:
               - location
-    served: true
-    referenceable: true
   claimNames:
     kind: NoSQLClaim
-    plural: nosqlclaim
+    plural: nosqlclaims
+

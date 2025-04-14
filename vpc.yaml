@@ -9,7 +9,7 @@ metadata:
 spec:
   forProvider:
     cidrBlock: 172.16.0.0/16
-    region: us-east-2
+    region: us-west-2
     tags:
       Name: DemoVpc
   providerConfigRef:

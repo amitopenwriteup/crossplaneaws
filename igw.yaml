@@ -6,7 +6,7 @@ metadata:
     testing.upbound.io/example-name: igw
 spec:
   forProvider:
-    region: us-east-2
+    region: us-west-2
     tags:
       Name: main
     vpcIdSelector:

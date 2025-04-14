@@ -6,9 +6,9 @@ metadata:
   name: subnetattach
 spec:
   forProvider:
-    availabilityZone: us-east-2b
+    availabilityZone: us-west-2b
     cidrBlock: 	172.16.0.0/18
-    region: us-east-2
+    region: us-west-2
     vpcIdSelector:
       matchLabels:
          testing.upbound.io/example-name: example

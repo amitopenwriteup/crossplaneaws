@@ -1,0 +1,12 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: VPCEndpointService
+metadata:
+  labels:
+    testing.upbound.io/example-name: foo
+  name: foo
+spec:
+  forProvider:
+    acceptanceRequired: false
+    networkLoadBalancerArns:
+      - arn:aws:elasticloadbalancing:us-west-2:430118834478:loadbalancer/net/lb/6c9b3bad121f0f9f
+    region: us-west-2

@@ -9,7 +9,7 @@ spec:
     destinationCidrBlock: 0.0.0.0/0
     gatewayIdRef:
       name: routegw
-    region: us-east-2
+    region: us-west-2
     routeTableIdRef:
       name: table
 #routegw.yaml
