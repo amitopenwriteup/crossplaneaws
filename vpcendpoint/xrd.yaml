@@ -1,0 +1,48 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: xendpointservices.composite.mongodb.ow.io
+spec:
+  group: composite.mongodb.ow.io
+  names:
+    kind: XEndpointService
+    plural: xendpointservices
+  claimNames:
+    kind: EndpointService
+    plural: endpointservices
+  versions:
+    - name: v1alpha1
+      served: true
+      referenceable: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                parameters:
+                  type: object
+                  properties:
+                    region:
+                      type: string
+                    orgName:
+                      type: string
+                    accountName:
+                      type: string
+                    vpcID:
+                      type: string
+                    subnetID:
+                      type: string
+                    securityGroupID:
+                      type: string
+              required:
+                - parameters
+            status:
+              type: object
+              properties:
+                privateLinkId:
+                  type: string
+                vpcendpointID:
+                  type: string
+
