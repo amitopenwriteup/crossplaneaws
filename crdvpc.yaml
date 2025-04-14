@@ -7,6 +7,9 @@ spec:
   names:
     kind: XVPC
     plural: xvpcs
+  claimNames:
+    kind: XVPCClaim
+    plural: xvpcclaims
   versions:
     - name: v1alpha1
       served: true
@@ -22,21 +25,4 @@ spec:
                   type: string
                 region:
                   type: string
-                subnets:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                      cidr:
-                        type: string
-                      availabilityZone:
-                        type: string
-                    required:
-                      - name
-                      - cidr
-              required:
-                - cidrBlock
-                - region
 

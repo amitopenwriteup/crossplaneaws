@@ -1,9 +1,9 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
-  name: xvpc.aws.network.example.com
+  name: xvpc-basic
   labels:
-    provider: aws
+    provider: example
 spec:
   compositeTypeRef:
     apiVersion: network.example.com/v1alpha1
@@ -15,54 +15,15 @@ spec:
         kind: VPC
         spec:
           forProvider:
-            cidrBlock: 10.1.0.0/16
-            enableDnsSupport: true
-            enableDnsHostNames: true
+            cidrBlock: 172.16.0.0/16   # default CIDR; can be overridden with patch
+            region: us-east-2         # default region; can be overridden with patch
+            tags:
+              Name: DemoVpc
           providerConfigRef:
             name: default
       patches:
         - fromFieldPath: "spec.cidrBlock"
           toFieldPath: "spec.forProvider.cidrBlock"
-        - fromFieldPath: "spec.region"
-          toFieldPath: "spec.forProvider.region"
-
-    - name: subnet-a
-      base:
-        apiVersion: ec2.aws.upbound.io/v1beta1
-        kind: Subnet
-        spec:
-          forProvider:
-            cidrBlock: 10.1.1.0/24
-            availabilityZone: us-east-2a
-            vpcIdSelector:
-              matchControllerRef: true
-          providerConfigRef:
-            name: default
-      patches:
-        - fromFieldPath: "spec.subnets[0].cidr"
-          toFieldPath: "spec.forProvider.cidrBlock"
-        - fromFieldPath: "spec.subnets[0].availabilityZone"
-          toFieldPath: "spec.forProvider.availabilityZone"
-        - fromFieldPath: "spec.region"
-          toFieldPath: "spec.forProvider.region"
-
-    - name: subnet-b
-      base:
-        apiVersion: ec2.aws.upbound.io/v1beta1
-        kind: Subnet
-        spec:
-          forProvider:
-            cidrBlock: 10.1.2.0/24
-            availabilityZone: us-east-2b
-            vpcIdSelector:
-              matchControllerRef: true
-          providerConfigRef:
-            name: default
-      patches:
-        - fromFieldPath: "spec.subnets[1].cidr"
-          toFieldPath: "spec.forProvider.cidrBlock"
-        - fromFieldPath: "spec.subnets[1].availabilityZone"
-          toFieldPath: "spec.forProvider.availabilityZone"
         - fromFieldPath: "spec.region"
           toFieldPath: "spec.forProvider.region"
 

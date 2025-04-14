@@ -1,18 +1,6 @@
 apiVersion: network.example.com/v1alpha1
 kind: XVPCClaim
 metadata:
-  name: my-xvpc-claim
-spec:
-  compositionSelector:
-    matchLabels:
-      provider: aws
-  cidrBlock: 10.1.0.0/16
-  region: us-east-2
-  subnets:
-    - name: public-subnet
-      cidr: 10.1.1.0/24
-      availabilityZone: us-east-2a
-    - name: private-subnet
-      cidr: 10.1.2.0/24
-      availabilityZone: us-east-2b
+  name: demo-vpc
+spec: {}
 
