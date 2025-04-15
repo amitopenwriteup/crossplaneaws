@@ -10,7 +10,7 @@ spec:
     secretRef:
       namespace: crossplane-system
       name: gke-provider-secret
-      key: kubeconfig
+      key: config
 
 Apply
 
