@@ -1,0 +1,20 @@
+Location:https://github.com/crossplane-contrib/provider-kubernetes/tree/main
+
+1) Create a yaml file: providerkube.yaml
+
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-kubernetes
+spec:
+  package: xpkg.upbound.io/upbound/provider-kubernetes:v0.16.0
+
+2) apply it
+
+kubectl create -f providerkube.yaml
+
+3) Get the resource detail
+
+kubectl get po -n crossplane-system
+
+

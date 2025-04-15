@@ -1,0 +1,22 @@
+Create ns.yaml
+
+apiVersion: kubernetes.crossplane.io/v1alpha2
+kind: Object
+metadata:
+  name: test-ns
+spec:
+  providerConfigRef:
+    name: kind-provider1
+  forProvider:
+    manifest:
+      apiVersion: v1
+      kind: Namespace
+      metadata:
+        name: crossplane-test-ns
+
+Apply
+
+kubectl create -f ns.yaml
+
+kubectl describe object.kubernetes.crossplane.io/test-ns
+
