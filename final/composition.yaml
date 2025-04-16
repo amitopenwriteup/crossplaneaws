@@ -1,0 +1,82 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: xendpointservices.composite.mongodb.ow.io
+  labels:
+    provider: mongodatlas
+spec:
+  writeConnectionSecretsToNamespace: crossplane-system
+  compositeTypeRef:
+    apiVersion: composite.mongodb.ow.io/v1alpha1
+    kind: XEndpointService
+  environment:
+    environmentConfigs:
+      - type: Selector
+        selector:
+          matchLabels:
+            scc.cloud.ow/resource-type:
+              type: Value
+              value: account
+            crossplane.io/claim-name:
+              type: FromCompositeFieldPath
+              valueFromFieldPath: spec.parameters.accountName
+            scc.cloud.allianz/cloud-provider:
+              type: Value
+              value: aws
+  resources:
+    - name: mongodatabaseservice
+      base:
+        apiVersion: privatelink.mongodbatlas.crossplane.io/v1alpha1
+        kind: Endpoint
+        metadata:
+          name: exmongo-endpointex
+        spec:
+          forProvider:
+            projectIdRef:
+              name: ""
+            region: ""
+            providerName: AWS
+          providerConfigRef:
+            name: ""
+      patches:
+        - fromFieldPath: "spec.parameters.region"
+          toFieldPath: "spec.forProvider.region"
+        - fromFieldPath: "spec.parameters.orgName"
+          toFieldPath: "spec.providerConfigRef.name"
+        - type: ToCompositeFieldPath
+          fromFieldPath: "status.atProvider.privateLinkID"
+          toFieldPath: "status.privateLinkId"
+
+    - name: awsendpoint
+      base:
+        apiVersion: ec2.aws.upbound.io/v1beta2
+        kind: VPCEndpoint
+        metadata:
+          name: vpcexendpoint
+        spec:
+          providerConfigRef:
+            name: ""
+          forProvider:
+            vpcId: ""
+            region: ""
+            endpointType: Interface
+            subnetId: ""
+            securityGroupId: ""
+      patches:
+        - fromFieldPath: "spec.parameters.vpcID"
+          toFieldPath: "spec.forProvider.vpcId"
+        - fromFieldPath: "spec.parameters.region"
+          toFieldPath: "spec.forProvider.region"
+        - fromFieldPath: "spec.parameters.subnetID"
+          toFieldPath: "spec.forProvider.subnetId"
+        - fromFieldPath: "spec.parameters.securityGroupID"
+          toFieldPath: "spec.forProvider.securityGroupId"
+        - type: ToCompositeFieldPath
+          policy:
+            fromFieldPath: Required
+          fromFieldPath: "status.atProvider.id"
+          toFieldPath: "status.vpcendpointID"
+        - type: FromEnvironmentFieldPath
+          fromFieldPath: scc.account.providerConfigRef
+          toFieldPath: spec.providerConfigRef.name
+

@@ -1,0 +1,72 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: xvpc.aws.network.example.com
+  labels:
+    provider: aws
+spec:
+  compositeTypeRef:
+    apiVersion: network.example.com/v1alpha1
+    kind: XVPC
+  resources:
+    - name: vpc
+      base:
+        apiVersion: ec2.aws.upbound.io/v1beta1
+        kind: VPC
+        spec:
+          forProvider:
+            cidrBlock: 10.1.0.0/16
+            enableDnsSupport: true
+            enableDnsHostNames: true
+          providerConfigRef:
+            name: default
+      patches:
+        - fromFieldPath: "spec.cidrBlock"
+          toFieldPath: "spec.forProvider.cidrBlock"
+        - fromFieldPath: "spec.region"
+          toFieldPath: "spec.forProvider.region"
+
+    - name: subnet-a
+      base:
+        apiVersion: ec2.aws.upbound.io/v1beta1
+        kind: Subnet
+        spec:
+          forProvider:
+            cidrBlock: 10.1.1.0/24
+            availabilityZone: us-west-2a
+            vpcIdSelector:
+              matchControllerRef: true
+          providerConfigRef:
+            name: default
+      patches:
+        - fromFieldPath: "spec.subnets[0].cidr"
+          toFieldPath: "spec.forProvider.cidrBlock"
+        - fromFieldPath: "spec.subnets[0].availabilityZone"
+          toFieldPath: "spec.forProvider.availabilityZone"
+        - fromFieldPath: "spec.region"
+          toFieldPath: "spec.forProvider.region"
+
+    - name: vpc-endpoint
+      base:
+        apiVersion: ec2.aws.upbound.io/v1beta1
+        kind: VPCEndpoint
+        spec:
+          forProvider:
+            vpcIdSelector:
+              matchControllerRef: true
+            region: us-west-2
+            serviceName: ""
+            routeTableIds: []
+            vpcEndpointType: Interface
+          providerConfigRef:
+            name: default
+      patches:
+        - fromFieldPath: "spec.vpcEndpoint.serviceName"
+          toFieldPath: "spec.forProvider.serviceName"
+        - fromFieldPath: "spec.vpcEndpoint.routeTableIds"
+          toFieldPath: "spec.forProvider.routeTableIds"
+        - fromFieldPath: "spec.vpcEndpoint.vpcEndpointType"
+          toFieldPath: "spec.forProvider.vpcEndpointType"
+        - fromFieldPath: "spec.region"
+          toFieldPath: "spec.forProvider.region"
+

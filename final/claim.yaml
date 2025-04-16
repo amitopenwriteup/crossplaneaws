@@ -1,0 +1,20 @@
+apiVersion: network.example.com/v1alpha1
+kind: XVPCClaim
+metadata:
+  name: my-xvpc-claim
+spec:
+  compositionSelector:
+    matchLabels:
+      provider: aws
+  cidrBlock: 10.1.0.0/16
+  region: us-west-2
+  subnets:
+    - name: public-subnet
+      cidr: 10.1.1.0/24
+      availabilityZone: us-west-2a
+  vpcEndpoint:
+    serviceName: com.amazonaws.us-west-2.s3  # Example service (S3 in this case)
+    vpcEndpointType: Gateway  # Gateway or Interface type
+    routeTableIds:
+      - rtb-0bbf5b039bb7bb4cd  # Example route table ID
+
