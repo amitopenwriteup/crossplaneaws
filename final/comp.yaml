@@ -46,25 +46,24 @@ spec:
         - fromFieldPath: "spec.region"
           toFieldPath: "spec.forProvider.region"
 
-    - name: vpc-endpoint
+    - name: vpcendpoint
       base:
-        apiVersion: ec2.aws.upbound.io/v1beta1
+        apiVersion: ec2.aws.upbound.io/v1beta2
         kind: VPCEndpoint
+        metadata:
+          name: ec2
         spec:
           forProvider:
+            region: us-west-2
+            serviceName: com.amazonaws.us-west-2.ec2
+            vpcEndpointType: Interface
             vpcIdSelector:
               matchControllerRef: true
-            region: us-west-2
-            serviceName: ""
-            routeTableIds: []
-            vpcEndpointType: Interface
           providerConfigRef:
             name: default
       patches:
         - fromFieldPath: "spec.vpcEndpoint.serviceName"
           toFieldPath: "spec.forProvider.serviceName"
-        - fromFieldPath: "spec.vpcEndpoint.routeTableIds"
-          toFieldPath: "spec.forProvider.routeTableIds"
         - fromFieldPath: "spec.vpcEndpoint.vpcEndpointType"
           toFieldPath: "spec.forProvider.vpcEndpointType"
         - fromFieldPath: "spec.region"

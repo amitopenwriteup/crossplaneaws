@@ -13,8 +13,6 @@ spec:
       cidr: 10.1.1.0/24
       availabilityZone: us-west-2a
   vpcEndpoint:
-    serviceName: com.amazonaws.us-west-2.s3  # Example service (S3 in this case)
-    vpcEndpointType: Gateway  # Gateway or Interface type
-    routeTableIds:
-      - rtb-0bbf5b039bb7bb4cd  # Example route table ID
+    serviceName: com.amazonaws.us-west-2.ec2
+    vpcEndpointType: Interface
 
