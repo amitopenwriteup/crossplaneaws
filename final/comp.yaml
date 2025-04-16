@@ -68,4 +68,16 @@ spec:
           toFieldPath: "spec.forProvider.vpcEndpointType"
         - fromFieldPath: "spec.region"
           toFieldPath: "spec.forProvider.region"
-
+    - name: vcpSubnetassociation
+      base: 
+        apiVersion: ec2.aws.upbound.io/v1beta1
+        kind: VPCEndpointSubnetAssociation
+        metadata:
+          name: sn-ec2
+        spec:
+          forProvider:
+            region: us-west-2
+            subnetIdSelector:
+              matchControllerRef: true
+            vpcEndpointIdSelector:
+              matchControllerRef: true

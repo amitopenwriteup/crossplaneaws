@@ -55,6 +55,12 @@ spec:
                   required:
                     - serviceName
                     - vpcEndpointType
+                  apiVersion: ec2.aws.upbound.io/v1beta1
+                vcpSubnetassociation:
+                  type: object
+                  properties:
+                    region:
+                      type: string
               required:
                 - cidrBlock
                 - region
