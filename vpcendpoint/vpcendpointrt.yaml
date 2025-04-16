@@ -1,0 +1,14 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: VPCEndpointRouteTableAssociation
+metadata:
+  name: my-vpce-rt-association
+spec:
+  forProvider:
+    region: us-west-2
+    vpcEndpointIdRef:
+      name: ec2  # Reference to your existing VPC Endpoint
+    routeTableIdRef:
+      name: my-route-table  # Reference to your existing Route Table
+  providerConfigRef:
+    name: default
+

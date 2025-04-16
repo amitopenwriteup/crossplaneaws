@@ -1,0 +1,14 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTable
+metadata:
+  name: my-route-table
+spec:
+  forProvider:
+    region: us-west-2
+    vpcIdRef:
+      name: imported-vpc  # Reference to your existing VPC
+    tags:
+      Name: example
+  providerConfigRef:
+    name: default
+

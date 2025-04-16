@@ -1,0 +1,14 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: VPCEndpointSubnetAssociation
+metadata:
+  name: sn-ec2
+spec:
+  forProvider:
+    region: us-west-2
+    subnetIdRef:
+      name: imported-subnet  # Reference to your existing Subnet
+    vpcEndpointIdRef:
+      name: ec2 # Reference to your existing VPC Endpoint
+  providerConfigRef:
+    name: default
+
